@@ -1,0 +1,17 @@
+{
+  "session_id": "20d21a3a-8f83-4f37-bbbd-4c40ce2aef47",
+  "start_time": "2025-11-20T18:43:06.753078",
+  "log_file": "dev-logs/2025-11-20/2025-11-20-184306-conversation.md",
+  "prompts": [
+    {
+      "timestamp": "18:45:19",
+      "content": "clear"
+    }
+  ],
+  "responses": [],
+  "file_changes": [],
+  "finalized": true,
+  "created_at": "2025-11-20T18:43:06.753078",
+  "updated_at": "2025-11-20T18:45:22.049069",
+  "end_time": "2025-11-20T18:45:22.048907"
+}
