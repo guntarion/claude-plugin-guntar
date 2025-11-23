@@ -12,14 +12,9 @@ import subprocess
 from pathlib import Path
 import re
 
-# Import conversation logger and session manager
-try:
-    from conversation_logger import get_logger
-    from session_manager import get_session_manager
-    LOGGING_ENABLED = True
-except ImportError:
-    LOGGING_ENABLED = False
-    print("Warning: conversation_logger or session_manager not available", file=sys.stderr)
+# Import session manager
+from session_manager import get_session_manager
+LOGGING_ENABLED = True
 
 # ===== CONFIGURATION =====
 # Choose which sound set to use: "voice" (spoken words) or "beeps" (simple tones)
@@ -32,12 +27,24 @@ ENABLE_JSONL_LOGGING = False
 # This dictionary maps Claude Code events and tools to sound files
 SOUND_MAP = {
     # System events - when Claude starts/stops
-    "Notification": "beep-6-96243",                  # Claude is ready to help
-    "Stop": "new-notification-024-370048",           # Task completed
-    "SubagentStop": "message-notification-103496",   # Subtask completed
+    "SessionStart": "mixkit-positive-notification-951",    # Session starts
+    "SessionEnd": "mixkit-positive-notification-951",      # Session ends
+    "Notification": "beep-6-96243",                        # Claude is ready to help
+    "Stop": "new-notification-024-370048",                 # Task completed
+    "SubagentStop": "message-notification-103496",         # Subtask completed
 
     # Task management
-    "TodoWrite": "mixkit-long-pop-2358",       # Update todo list
+    "TodoWrite": "mixkit-long-pop-2358",                   # Update todo list
+
+    # Tool completion events
+    "PostToolUse": "mixkit-one-clap-481",                  # Tool operation completed
+
+    # Search operations
+    "Grep": "chakongaudio-174892",                         # Grep search
+    "Glob": "chakongaudio-174892",                         # Glob search
+
+    # Error notifications
+    "Error": "mixkit-wrong-electricity-buzz-955",          # Error occurred
 
     # Bash command patterns - matched using regular expressions
     # Format: (regex_pattern, sound_name)
